@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プログラミング用語集</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    h1,
+    h2{
+        text-align: center;
+        color: white;
+    }
+    h1{
+        position: relative;
+        font-size: 50px;
+    }
+    h2{
+        position: relative;
+        margin-top: 10px;
+        font-size: 30px;
+    }
+    .titles{
+        position: relative;
+        width: 90%;
+        margin: auto;
+    }
+    .titles::before{
+        /* content: ""; */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%; /* 要素より大きく */
+        max-width: 600px;
+        height: 120%;
+        background-color: rgba(0, 0, 0, 0.5);
+        transform: translate(-50%, -50%); /* 中央に配置 */
+        z-index: -1; /* 背景を後ろに */
+        border-radius: 1em;
+    }
+    ul{
+        margin: 0 auto;
+        width: 80%;
+        max-width: 400px;
+    }
+    li{
+        position: relative;
+        list-style: none;
+        text-align: left;
+        color: white;
+        margin-top: 60px;
+    }
+    li::before{
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 110%; /* 要素より大きく */
+        height: 130%;
+        background-color: rgba(204, 255, 255, 0.5);
+        transform: translate(-50%, -50%); /* 中央に配置 */
+        z-index: -1; /* 背景を後ろに */
+        border-radius: 1em;
+    }
+    #display{
+        position: relative;
+        overflow: hidden; /* 擬似要素のはみ出し防止 */
+        min-height: 100vh;
+    }
+    #display::before{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(img/background.jpg) center/cover no-repeat;
+        /* filter: blur(4px); */ /* ぼかし量 */
+        transform: scale(1.05); /* ぼかしで端が透けるのを防ぐ */
+        z-index: -1;
+    }
+    #title{
+        margin-top: 20px;
+    }
+    #main{
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    .hide{
+        text-align: center;
+        color: orange;
+        text-shadow:
+        -0.6px -0.6px 0 white,
+        0.6px -0.6px 0 white,
+        -0.6px 0.6px 0 white,
+        0.6px 0.6px 0 white; /* 影の位置と色 */
+        cursor: pointer;
+        font-size: 24px;
+    }
+</style>
+<script>
+    window.onload = init; /* このコードの欠点はロード中に一瞬答えが見えること */
+    function init(){
+        let hide = document.querySelectorAll("span.hide")
+        for(let i=0; i<hide.length; i++){
+            let h = hide[i];
+            h.answer = h.textContent;
+            h.textContent = "_____";
+            h.onclick = function(e){
+                e.target.textContent = e.target.answer;
+            };
+        };
+    };
+</script>
+<body>
+    <div id="display">
+        <div class="titles">
+            <h1 id="title">プログラミング言語集</h1>
+            <h2 id="sub-title">～暗記機能付き～</h2>
+        </div>
+        <ul id="main">
+            <li><span class="hide">HyperText Markup Language（HTML）</span><br>Webページの構造を定義するためのマークアップ言語</li>
+            <li><span class="hide">Cascading Style Sheets<br>（CSS）</span><br>Webページのデザインやレイアウトを設定するための言語</li>
+            <li><span class="hide">JavaScript</span><br>Webページに動的な機能を追加するためのプログラミング言語</li>
+            <li><span class="hide">C言語</span><br>1972年にアメリカのAT&Tベル研究所で開発されたプログラミング言語</li>
+            <li><span class="hide">Java</span><br>1995年にSun Microsystems（現在はOracle社）によって開発された汎用性の高いプログラミング言語およびコンピューティングプラットフォーム</li>
+            <li><span class="hide">C#</span><br>マイクロソフトが開発したオブジェクト指向の汎用プログラミング言語で、.NETプラットフォーム上で動作する</li>
+        </ul>
+    </div>
+</body>
+</html>
